@@ -5,13 +5,13 @@ namespace MoodAnalyser
 {
     class MoodAnalysisException : Exception
     {
-        private readonly string message = "Invalid mood entered/ Mood cannot be NULL";
+        public enum Errors { EMPTY }
         /// <summary>
-        /// custom exception for mood analysis.
+        /// custom exception for mood analysis. display an empty message.
         /// </summary>
         public MoodAnalysisException() 
         {
-            Console.WriteLine(message);
+            Console.WriteLine(Errors.EMPTY);
         }
     }
 }
