@@ -3,7 +3,6 @@ using MoodAnalyser;
 
 namespace NUnitMoodAnalyser.Test
 {
-  
     public class Tests
     {
         /// <summary>
