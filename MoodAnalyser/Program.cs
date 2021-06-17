@@ -12,7 +12,7 @@ namespace MoodAnalyser
         {
             Console.WriteLine("Mood Analyser program using Exceptions");
 
-            MoodAnalyserr moodAnalyserr = new MoodAnalyserr("Iam in Sad Mood");
+            MoodAnalyserr moodAnalyserr = new MoodAnalyserr(null);
             Console.WriteLine(moodAnalyserr.MoodCheck());
         }
     }

@@ -1,5 +1,7 @@
 ﻿
 
+using System;
+
 namespace MoodAnalyser
 {
     public class MoodAnalyserr
@@ -16,15 +18,25 @@ namespace MoodAnalyser
         /// <summary>
         /// Check for mood if sad return sad message and
         /// if happy return happy message.
+        /// if mood is null throw an exception invalid mood.
         /// </summary>
         /// <param name="message">string passed by user</param>
         /// <returns></returns>
         public string MoodCheck()
         {
-            if (message == SAD_MESSAGE)
-                return "SAD";
-            if (message == HAPPY_MESSAGE)
-                return "HAPPY";
+            try
+            {
+                if (message == null)
+                    throw new Exception("Invalid Mood");
+                if (message == SAD_MESSAGE)
+                    return "SAD";
+                if (message == HAPPY_MESSAGE)
+                    return "HAPPY";
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return null;
         }
     }
