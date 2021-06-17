@@ -26,16 +26,16 @@ namespace MoodAnalyser
         {
             try
             {
-                if (message == null)
-                    throw new Exception("Invalid Mood");
+                if (message == null || message == string.Empty)
+                    throw new Exception();
                 if (message == SAD_MESSAGE)
                     return "SAD";
                 if (message == HAPPY_MESSAGE)
                     return "HAPPY";
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                Console.WriteLine(ex.Message);
+                return "HAPPY";
             }
             return null;
         }
