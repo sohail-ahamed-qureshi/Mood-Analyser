@@ -16,8 +16,8 @@ namespace NUnitMoodAnalyser.Test
             string message = "Iam in Sad Mood";
             string expected = "SAD";
             //Act
-            MoodAnalyserr mood = new MoodAnalyserr();
-            string result = mood.MoodCheck(message);
+            MoodAnalyserr mood = new MoodAnalyserr(message);
+            string result = mood.MoodCheck();
             //Assert
             Assert.AreEqual(expected, result);
         }
@@ -31,8 +31,8 @@ namespace NUnitMoodAnalyser.Test
             string message = "Iam in Any Mood";
             string expected = "HAPPY";
             //Act
-            MoodAnalyserr mood = new MoodAnalyserr();
-            string result = mood.MoodCheck(message);
+            MoodAnalyserr mood = new MoodAnalyserr(message);
+            string result = mood.MoodCheck();
             //Assert
             Assert.AreEqual(expected, result);
         }
