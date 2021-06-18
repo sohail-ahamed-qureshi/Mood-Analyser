@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoodAnalyser", "MoodAnalyser.csproj", "{24DB7479-B547-4A9C-9767-FA0DBD83EF04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoodAnalyser", "MoodAnalyser.csproj", "{24DB7479-B547-4A9C-9767-FA0DBD83EF04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitMoodAnalyser.Test", "..\NUnitMoodAnalyser.Test\NUnitMoodAnalyser.Test.csproj", "{038B88FB-AEAC-487E-8F90-EA13D3803D8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NUnitMoodAnalyser.Test", "..\NUnitMoodAnalyser.Test\NUnitMoodAnalyser.Test.csproj", "{038B88FB-AEAC-487E-8F90-EA13D3803D8C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionsDemo", "..\..\Reflections-C#\ReflectionsDemo\ReflectionsDemo.csproj", "{6821B0DD-CF69-4549-A70D-65843234D98F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{038B88FB-AEAC-487E-8F90-EA13D3803D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{038B88FB-AEAC-487E-8F90-EA13D3803D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{038B88FB-AEAC-487E-8F90-EA13D3803D8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6821B0DD-CF69-4549-A70D-65843234D98F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6821B0DD-CF69-4549-A70D-65843234D98F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6821B0DD-CF69-4549-A70D-65843234D98F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6821B0DD-CF69-4549-A70D-65843234D98F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

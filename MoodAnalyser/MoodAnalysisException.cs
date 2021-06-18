@@ -11,7 +11,7 @@ namespace MoodAnalyser
         /// </summary>
         public MoodAnalysisException() 
         {
-            Console.WriteLine(Errors.EMPTY);
+            Console.WriteLine(Errors.EMPTY +  ": Mood cannot be empty");
         }
     }
 }

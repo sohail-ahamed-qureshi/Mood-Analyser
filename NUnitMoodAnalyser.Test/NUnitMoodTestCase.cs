@@ -6,49 +6,17 @@ namespace NUnitMoodAnalyser.Test
     public class Tests
     {
         /// <summary>
-        /// check for sad mood, returns "SAD" message.
+        /// check when given Class name should return object name
         /// </summary>
         [Test]
-        public void WhenGivenSadMood_ReturnsSadMessge()
+        public void WhenGivenClassName_ReturnsObject()
         {
             //Arrange
-            string message = "Iam in Sad Mood";
-            string expected = "SAD";
+            string expected = "MoodAnalyser.MoodAnalyserr";
             //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
+            object result =MoodAnalyserFactory.CreateObjectAtRuntime();
             //Assert
-            Assert.AreEqual(expected, result);
-        }
-        /// <summary>
-        /// Check for Happy mood, return "HAPPY" message.
-        /// </summary>
-        [Test]
-        public void WhenGivenHappyMood_ReturnsHappyMessage()
-        {
-            //Arrange
-            string message = "Iam in Any Mood";
-            string expected = "HAPPY";
-            //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
-            //Assert
-            Assert.AreEqual(expected, result);
-        }
-        /// <summary>
-        /// check for invalid mood, returns "HAPPY" message.
-        /// </summary>
-        [Test]
-        public void WhenGivenInvalidMood_ReturnsHappyMessage()
-        {
-            //Arrange
-            string message = "";
-            string expected = "HAPPY";
-            //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
-            //Assert
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expected, result.ToString());
         }
     }
 }

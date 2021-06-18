@@ -1,19 +1,25 @@
 ﻿using System;
+using System.Reflection;
 
 namespace MoodAnalyser
 {
     class Program
     {
         /// <summary>
-        /// Mood Analyser Program using Exceptions.
+        /// Mood Analyser Program using Reflections.
+        /// Creating an Object of Mood Analyser class at run time with reflections.
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("Mood Analyser program using Exceptions");
+            //Console.WriteLine("Mood Analyser program using Reflections");
+            ////creating an instance of an Class at Compile time.
+            //MoodAnalyserr moodAnalyserr = new MoodAnalyserr("");
+            //Console.WriteLine(" Method called at Compile time : " + moodAnalyserr.MoodCheck("Iam in Sad Mood"));
+            //Static method to create an instance of class at Compile Time.
+            Console.WriteLine( MoodAnalyserFactory.CreateObjectAtRuntime());
 
-            MoodAnalyserr moodAnalyserr = new MoodAnalyserr("");
-            Console.WriteLine(moodAnalyserr.MoodCheck());
+
         }
     }
 }
