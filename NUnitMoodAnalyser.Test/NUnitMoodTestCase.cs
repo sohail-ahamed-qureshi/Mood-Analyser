@@ -13,14 +13,22 @@ namespace NUnitMoodAnalyser.Test
         [Test]
         public void WhenGivenSadMood_ReturnsSadMessge()
         {
-            //Arrange
-            string message = "Iam in Sad Mood";
-            string expected = "SAD";
-            //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
-            //Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                //Arrange
+                string message = "Iam in Sad Mood";
+                string expected = "SAD";
+                //Act
+                MoodAnalyserr mood = new MoodAnalyserr(message);
+                string result = mood.MoodCheck();
+                //Assert
+                Assert.AreEqual(expected, result);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
         /// <summary>
         /// Check for Happy mood, return "HAPPY" message.
@@ -28,14 +36,22 @@ namespace NUnitMoodAnalyser.Test
         [Test]
         public void WhenGivenHappyMood_ReturnsHappyMessage()
         {
-            //Arrange
-            string message = "Iam in Any Mood";
-            string expected = "HAPPY";
-            //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
-            //Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                //Arrange
+                string message = "Iam in Any Mood";
+                string expected = "HAPPY";
+                //Act
+                MoodAnalyserr mood = new MoodAnalyserr(message);
+                string result = mood.MoodCheck();
+                //Assert
+                Assert.AreEqual(expected, result);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+           
         }
         /// <summary>
         /// check for invalid mood, returns "HAPPY" message.
@@ -43,14 +59,22 @@ namespace NUnitMoodAnalyser.Test
         [Test]
         public void WhenGivenInvalidMood_ReturnsHappyMessage()
         {
-            //Arrange
-            string message = "";
-            string expected = "HAPPY";
-            //Act
-            MoodAnalyserr mood = new MoodAnalyserr(message);
-            string result = mood.MoodCheck();
-            //Assert
-            Assert.AreEqual(expected, result);
+            try
+            {
+                //Arrange
+                string message = "";
+                string expected = "HAPPY";
+                //Act
+                MoodAnalyserr mood = new MoodAnalyserr(message);
+                string result = mood.MoodCheck();
+                //Assert
+                Assert.AreEqual(expected, result);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
         }
         /// <summary>
         /// check when given Class name should return object name
@@ -77,6 +101,10 @@ namespace NUnitMoodAnalyser.Test
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Done all test cases");
             }
 
         }
