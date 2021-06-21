@@ -11,7 +11,7 @@ namespace MoodAnalyser
         private const string SAD_MESSAGE = "Iam in Sad Mood";
         private const string HAPPY_MESSAGE = "Iam in Any Mood";
         //variables
-        private string message;
+        private readonly string message;
         public MoodAnalyserr()
         {
 
@@ -27,7 +27,7 @@ namespace MoodAnalyser
         /// </summary>
         /// <param name="message">string passed by user</param>
         /// <returns></returns>
-        public string MoodCheck(string message)
+        public string MoodCheck()
         {
             try
             {
@@ -41,6 +41,14 @@ namespace MoodAnalyser
             catch(MoodAnalysisException)
             {
                 return "HAPPY";
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Done");
             }
             return null;
         }

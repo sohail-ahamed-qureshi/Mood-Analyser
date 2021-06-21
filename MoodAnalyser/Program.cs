@@ -17,9 +17,8 @@ namespace MoodAnalyser
             //MoodAnalyserr moodAnalyserr = new MoodAnalyserr("");
             //Console.WriteLine(" Method called at Compile time : " + moodAnalyserr.MoodCheck("Iam in Sad Mood"));
             //Static method to create an instance of class at Compile Time.
-            Console.WriteLine( MoodAnalyserFactory.CreateObjectAtRuntime());
-
-
+           object objName = MoodAnalyserFactory.CreateObjectAtRuntime();
+            Console.WriteLine(objName);
         }
     }
 }
