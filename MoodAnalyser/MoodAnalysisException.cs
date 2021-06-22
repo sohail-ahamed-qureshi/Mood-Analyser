@@ -8,8 +8,8 @@ namespace MoodAnalyser
         public enum Errors
         {
             EMPTY,
-            CLASS_ERROR
-
+            CLASS_ERROR,
+            METHOD_ERROR
         }
         /// <summary>
         /// custom exception for mood analysis. display an empty message.
