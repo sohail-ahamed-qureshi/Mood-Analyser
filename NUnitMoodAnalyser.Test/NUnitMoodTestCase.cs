@@ -24,11 +24,11 @@ namespace NUnitMoodAnalyser.Test
                 //Assert
                 Assert.AreEqual(expected, result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
         /// <summary>
         /// Check for Happy mood, return "HAPPY" message.
@@ -47,11 +47,11 @@ namespace NUnitMoodAnalyser.Test
                 //Assert
                 Assert.AreEqual(expected, result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-           
+
         }
         /// <summary>
         /// check for invalid mood, returns "HAPPY" message.
@@ -63,18 +63,18 @@ namespace NUnitMoodAnalyser.Test
             {
                 //Arrange
                 string message = "";
-                string expected = "HAPPY";
+                string expected = null;
                 //Act
                 MoodAnalyserr mood = new MoodAnalyserr(message);
                 string result = mood.MoodCheck();
                 //Assert
                 Assert.AreEqual(expected, result);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            
+
         }
         /// <summary>
         /// check when given Class name should return object name
@@ -84,19 +84,17 @@ namespace NUnitMoodAnalyser.Test
         {
             try
             {
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                //
-                Type moodAnalyserType = assembly.GetType("MoodAnalyser.MoodAnalyserr");
-                //cross checking
-                Console.WriteLine($"{moodAnalyserType.Name}");
-                //creating object of class
-                object tempObject = Activator.CreateInstance(moodAnalyserType);
+                object tempObject = MoodAnalyserFactory.CreateObjectAtRuntime("MoodAnalyser.MoodAnalyserr");
                 //Arrange
-                string expected = (string)tempObject;
+                string expected = "MoodAnalyser.MoodAnalyserr";
                 //Act
-                string result = "MoodAnalyser.MoodAnalyserr";
+                string result = tempObject.ToString();
                 //Assert
                 Assert.AreEqual(expected, result);
+            }
+            catch (MoodAnalysisException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
@@ -104,9 +102,37 @@ namespace NUnitMoodAnalyser.Test
             }
             finally
             {
-                Console.WriteLine("Done all test cases");
+                Console.WriteLine("Done Test case: WhenGivenClassName_ReturnsObject");
             }
+        }
 
+        [Test]
+        public void WhenGivenClassNameImproper_ThrowsMoodAnalysisException()
+        {
+            try
+            {
+                //passing improper class name will return me Null value which means an improper class name has been
+                //passed and throws me an custom exception NO Such Class Error.
+                object tempObject = MoodAnalyserFactory.CreateObjectAtRuntime("MoodAnalyser.MoodAnalysers");
+                //Arrange
+                string expected = null;
+                //Act
+                string result = null;
+                //Assert
+                Assert.AreEqual(result, expected);
+            }
+            catch (MoodAnalysisException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Done Test case: WhenGivenClassNameWrong_ThrowsMoodAnalysisException");
+            }
         }
     }
 }

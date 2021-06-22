@@ -2,6 +2,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace MoodAnalyser
 {
@@ -32,15 +33,15 @@ namespace MoodAnalyser
             try
             {
                 if (message == null || message == string.Empty)
-                    throw new MoodAnalysisException();
+                    throw new MoodAnalysisException(message);
                 if (message == SAD_MESSAGE)
                     return "SAD";
                 if (message == HAPPY_MESSAGE)
                     return "HAPPY";
             }
-            catch(MoodAnalysisException)
+            catch(MoodAnalysisException ex)
             {
-                return "HAPPY";
+                Console.WriteLine(ex.Message);
             }
             catch(Exception e)
             {
@@ -52,8 +53,5 @@ namespace MoodAnalyser
             }
             return null;
         }
-
-
-       
     }
 }

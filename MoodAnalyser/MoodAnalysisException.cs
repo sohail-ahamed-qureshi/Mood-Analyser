@@ -3,15 +3,27 @@
 
 namespace MoodAnalyser
 {
-    class MoodAnalysisException : Exception
+    public class MoodAnalysisException : Exception
     {
-        public enum Errors { EMPTY }
+        public enum Errors
+        {
+            EMPTY,
+            CLASS_ERROR
+
+        }
         /// <summary>
         /// custom exception for mood analysis. display an empty message.
         /// </summary>
-        public MoodAnalysisException() 
+        public MoodAnalysisException(string message)
         {
-            Console.WriteLine(Errors.EMPTY +  ": Mood cannot be empty");
+            if (message == null || message == string.Empty)
+            {
+                Console.WriteLine(Errors.EMPTY + ": Mood cannot be empty.");
+            }
+            else if (message.Contains("Mood"))
+            {
+                Console.WriteLine(Errors.CLASS_ERROR+ ": No Such Class Error.");
+            }
         }
     }
 }
