@@ -22,8 +22,9 @@ namespace MoodAnalyser
 
             //// method to create an instance of class at Run Time.
             MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyserr");
-            object objName = moodAnalyserFactory.CreateObjectAtRuntime();
-            Console.WriteLine("object of the class :" + objName);
+            //object objName = moodAnalyserFactory.CreateObjectAtRuntime();
+            //Console.WriteLine("object of the class :" + objName);
+            moodAnalyserFactory.InvokeMethod();
         }
 
 

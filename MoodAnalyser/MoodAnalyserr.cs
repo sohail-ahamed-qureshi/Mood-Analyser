@@ -15,9 +15,9 @@ namespace MoodAnalyser
         private readonly string message;
         public MoodAnalyserr()
         {
-            message = null;
+            message = SAD_MESSAGE;
             //checking for null
-            if(message != null)
+            if (message != null)
                 message = message.ToLower();
 
         }

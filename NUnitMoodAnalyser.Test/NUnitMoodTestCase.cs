@@ -182,7 +182,7 @@ namespace NUnitMoodAnalyser.Test
             {
                 //passing improper class name will return me Null value which means an improper class name has been
                 //passed and throws me an custom exception NO Such Class Error.
-                MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyserr");
+                MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyser");
                 object tempObject = moodAnalyserFactory.CreateObjectAtRuntime();
                 //Arrange
                 string expected = null;
@@ -213,7 +213,7 @@ namespace NUnitMoodAnalyser.Test
             try
             {
                 //passing improper class name will return me Null value which means an improper class name has been
-                //passed and throws me an custom exception NO Such Class Error.
+                //passed and throws me an custom exception NO Such Method Error.
                 MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
                 //passing the wrong constructor parameter to catch the exception, return null value
                 ConstructorInfo constructorObj = moodAnalyserFactory.GetConstructor(1);

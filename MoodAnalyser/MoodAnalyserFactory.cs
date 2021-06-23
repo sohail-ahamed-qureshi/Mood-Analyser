@@ -28,6 +28,7 @@ namespace MoodAnalyser
         {
             this.className = "MoodAnalyser.MoodAnalyserr";
         }
+        //variable
         Type moodAnalyserType;
         object moodAnalyserObject;
         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -40,8 +41,6 @@ namespace MoodAnalyser
         {
             try
             {
-                //variable
-
                 moodAnalyserType = assembly.GetType(this.className);
                 //if class name is invalid will throw an exception.
                 if (moodAnalyserType == null)
@@ -50,9 +49,9 @@ namespace MoodAnalyser
                 {
                     //creata an object with Constructor.
                     moodAnalyserObject = Activator.CreateInstance(moodAnalyserType);
-                    ConstructorInfo constructor = GetConstructor();
-                    var conObj = CreateConstructor(this.className, constructor);
-                    Console.WriteLine("Constructor object: " + conObj);
+                    //ConstructorInfo constructor = GetConstructor();
+                    //var conObj = CreateConstructor(this.className, constructor);
+                    //Console.WriteLine("Constructor object: " + conObj);
                 }
                 return moodAnalyserObject;
             }
@@ -117,6 +116,23 @@ namespace MoodAnalyser
             }
             //getting constuctors from the class.
             return null;
+        }
+
+
+        public void InvokeMethod()
+        {
+            //creating an object of class by CreatAbjectAtRuntime() method.
+            object moodAnalysisObj = CreateObjectAtRuntime();
+            //Getting the methods present in the class
+            MethodInfo methodMoodCheck = moodAnalyserType.GetMethod("MoodCheck");
+            //method takes parameters as string message
+            object[] message = new object[1];
+            //passing the message through a variable
+            message[0] = "hello";
+            //invoking method using predefined Invoke method with object and passing string parameter.
+            //return object type.
+            var outputMessage = methodMoodCheck.Invoke(moodAnalysisObj, null);
+            Console.WriteLine("output of mood check during runtime : "+outputMessage.ToString());
         }
     }
 }
