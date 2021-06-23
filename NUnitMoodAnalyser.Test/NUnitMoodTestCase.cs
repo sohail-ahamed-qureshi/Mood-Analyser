@@ -74,7 +74,6 @@ namespace NUnitMoodAnalyser.Test
             {
                 Console.WriteLine(e.Message);
             }
-
         }
         /// <summary>
         /// check when given Class name should return object name
@@ -217,7 +216,7 @@ namespace NUnitMoodAnalyser.Test
                 MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
                 //passing the wrong constructor parameter to catch the exception, return null value
                 ConstructorInfo constructorObj = moodAnalyserFactory.GetConstructor(1);
-                var constructor = moodAnalyserFactory.CreateConstructor("MoodAnalyser.MoodAnalyserr",constructorObj );
+                var constructor = moodAnalyserFactory.CreateConstructor("MoodAnalyser.MoodAnalyserr", constructorObj);
                 //Arrange
                 string expected = null;
                 //Act
@@ -237,6 +236,14 @@ namespace NUnitMoodAnalyser.Test
             {
                 Console.WriteLine("Done Test case: WhenGivenClassNameWrong_ThrowsMoodAnalysisException");
             }
+        }
+        [Test]
+        public void GivenHappyMessage_UsingReflections_ReturnsHappyMood()
+        {
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+            string result = moodAnalyserFactory.InvokeMethod();
+            string expected = "HAPPY";
+            Assert.AreEqual(result, expected);
         }
     }
 }
