@@ -8,6 +8,8 @@ namespace MoodAnalyser
     /// </summary>
     public class MoodAnalyserFactory
     {
+        //variable
+        private readonly string className;
         /// <summary>
         /// Achieve Late binding.
         /// Assembly = create an executing assembly at the runtime
@@ -17,32 +19,40 @@ namespace MoodAnalyser
         /// Invoke - invoking the method that takes an object and parameters as its parameters and
         ///          returns the object type value which can be converted to required type implicitly at runtime
         /// </summary>
-        /// 
-        private string className;
         public MoodAnalyserFactory(string className)
         {
             this.className = className;
         }
+        //constructor without parameters
         public MoodAnalyserFactory()
         {
-            
+            this.className = "MoodAnalyser.MoodAnalyserr";
         }
+        Type moodAnalyserType;
+        object moodAnalyserObject;
+        Assembly assembly = Assembly.GetExecutingAssembly();
+
+        /// <summary>
+        /// method for creating an object at runtime
+        /// </summary>
+        /// <returns></returns>
         public object CreateObjectAtRuntime()
         {
             try
             {
                 //variable
-                object moodAnalyserObject;
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                Type moodAnalyserType = assembly.GetType(this.className);
+
+                moodAnalyserType = assembly.GetType(this.className);
                 //if class name is invalid will throw an exception.
                 if (moodAnalyserType == null)
-                    throw new MoodAnalysisException(className);
+                    throw new MoodAnalysisException(MoodAnalysisException.Errors.CLASS_ERROR);
                 else
                 {
-                    Console.WriteLine($"Name of the class at Runtime: {moodAnalyserType.Name}");
-                    //creating an object with parameterized Constructor.
-                    moodAnalyserObject = Activator.CreateInstance(moodAnalyserType, "this is a message");
+                    //creata an object with Constructor.
+                    moodAnalyserObject = Activator.CreateInstance(moodAnalyserType);
+                    ConstructorInfo constructor = GetConstructor();
+                    var conObj = CreateConstructor(this.className, constructor);
+                    Console.WriteLine("Constructor object: " + conObj);
                 }
                 return moodAnalyserObject;
             }
@@ -60,38 +70,52 @@ namespace MoodAnalyser
             }
             return null;
         }
+        /// <summary>
+        /// Creating an non paramterzied constructor at run time.
+        /// if classname is improper throws an exception
+        /// </summary>
+        /// <param name="className"></param>
+        /// <param name="constructor"></param>
+        /// <returns></returns>
+        public object CreateConstructor(string className, ConstructorInfo constructor)
+        {
 
-        public object CreateObjectAtRuntime(string className)
+            //for creating an constructor we need classname and constructor parameter
+            //class name should be same as existing class name
+            if (className != moodAnalyserType.FullName)
+                throw new MoodAnalysisException(MoodAnalysisException.Errors.CLASS_ERROR);
+            //constructor name should be same as Constructor in this case we are checking for non parameteized constructor.
+            if (constructor != moodAnalyserType.GetConstructors()[0])
+                throw new MoodAnalysisException(MoodAnalysisException.Errors.METHOD_ERROR);
+            //we create an constructor with create instance method.
+            var constructorObj = Activator.CreateInstance(moodAnalyserType);
+            return constructorObj;
+        }
+
+
+        /// <summary>
+        /// returns a parameterless cosntructor
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public ConstructorInfo GetConstructor(int parameter = 0)
         {
             try
             {
-                //variable
-                object moodAnalyserObject;
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                Type moodAnalyserType = assembly.GetType(this.className);
-                //if class name is invalid will throw an exception.
-                if (moodAnalyserType == null)
-                    throw new MoodAnalysisException(className);
-                else
+                moodAnalyserType = assembly.GetType(this.className);
+                ConstructorInfo[] constructorInfo = moodAnalyserType.GetConstructors();
+                foreach (ConstructorInfo constructor in constructorInfo)
                 {
-                    Console.WriteLine($"Name of the class at Runtime: {moodAnalyserType.Name}");
-                    //creating an object with parameterized Constructor.
-                    moodAnalyserObject = Activator.CreateInstance(moodAnalyserType, "MoodAnalyser.MoodAnalyserr");
+                    //checking for cosntructor with no parameters
+                    if (constructor.GetParameters().Length == parameter)
+                        return constructor;
                 }
-                return moodAnalyserObject;
             }
-            catch (MoodAnalysisException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Done Reflections");
-            }
+            //getting constuctors from the class.
             return null;
         }
     }

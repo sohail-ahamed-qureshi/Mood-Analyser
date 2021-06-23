@@ -12,17 +12,20 @@ namespace MoodAnalyser
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-
             //MoodAnalyserr mood = new MoodAnalyserr("");
             //mood.MoodCheck();
-            //Console.WriteLine("Mood Analyser program using Reflections");
+            Console.WriteLine("Mood Analyser program using Reflections");
+
             ////creating an instance of an Class at Compile time.
-            //MoodAnalyserr moodAnalyserr = new MoodAnalyserr("");
-            //Console.WriteLine(" Method called at Compile time : " + moodAnalyserr.MoodCheck("Iam in Sad Mood"));
-            //Static method to create an instance of class at Compile Time.
-            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyser");
+            //MoodAnalyserr moodAnalyserr = new MoodAnalyserr();
+            //Console.WriteLine("Mood is : " + moodAnalyserr.MoodCheck());
+
+            //// method to create an instance of class at Run Time.
+            MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyserr");
             object objName = moodAnalyserFactory.CreateObjectAtRuntime();
-            Console.WriteLine(objName);
+            Console.WriteLine("object of the class :" + objName);
         }
+
+
     }
 }

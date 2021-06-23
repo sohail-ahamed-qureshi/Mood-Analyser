@@ -86,7 +86,7 @@ namespace NUnitMoodAnalyser.Test
             {
                 //testing with default constructor
                 MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
-                object tempObject = moodAnalyserFactory.CreateObjectAtRuntime("MoodAnalyser.MoodAnalyserr");
+                object tempObject = moodAnalyserFactory.CreateObjectAtRuntime();
                 //Arrange
                 string expected = "MoodAnalyser.MoodAnalyserr";
                 //Act
@@ -118,7 +118,7 @@ namespace NUnitMoodAnalyser.Test
                 //passing improper class name will return me Null value which means an improper class name has been
                 //passed and throws me an custom exception NO Such Class Error.
                 MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
-                object tempObject = moodAnalyserFactory.CreateObjectAtRuntime("MoodAnalyser.MoodAnalyser");
+                object tempObject = moodAnalyserFactory.CreateObjectAtRuntime();
                 //Arrange
                 string expected = null;
                 //Act
@@ -182,12 +182,46 @@ namespace NUnitMoodAnalyser.Test
             {
                 //passing improper class name will return me Null value which means an improper class name has been
                 //passed and throws me an custom exception NO Such Class Error.
-                MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyser");
+                MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory("MoodAnalyser.MoodAnalyserr");
                 object tempObject = moodAnalyserFactory.CreateObjectAtRuntime();
                 //Arrange
                 string expected = null;
                 //Act
-                string result = null;
+                string result = null;//tempObject.ToString();
+                                     //Assert
+                Assert.AreEqual(result, expected);
+            }
+            catch (MoodAnalysisException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Done Test case: WhenGivenClassNameWrong_ThrowsMoodAnalysisException");
+            }
+        }
+        /// <summary>
+        /// passing wrong constructor parameter
+        /// </summary>
+        [Test]
+        public void GivenConstructorParameterImproper_ThrowsMoodAnalysisException()
+        {
+            try
+            {
+                //passing improper class name will return me Null value which means an improper class name has been
+                //passed and throws me an custom exception NO Such Class Error.
+                MoodAnalyserFactory moodAnalyserFactory = new MoodAnalyserFactory();
+                //passing the wrong constructor parameter to catch the exception, return null value
+                ConstructorInfo constructorObj = moodAnalyserFactory.GetConstructor(1);
+                var constructor = moodAnalyserFactory.CreateConstructor("MoodAnalyser.MoodAnalyserr",constructorObj );
+                //Arrange
+                string expected = null;
+                //Act
+                string result = constructor.ToString();
                 //Assert
                 Assert.AreEqual(result, expected);
             }

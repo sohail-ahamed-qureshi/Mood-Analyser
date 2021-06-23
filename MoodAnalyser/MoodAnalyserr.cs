@@ -15,11 +15,16 @@ namespace MoodAnalyser
         private readonly string message;
         public MoodAnalyserr()
         {
+            message = null;
+            //checking for null
+            if(message != null)
+                message = message.ToLower();
 
         }
         public MoodAnalyserr(string message)
         {
-            this.message = message;
+            if (this.message != null)
+                this.message = message.ToLower();
         }
         /// <summary>
         /// Check for mood if sad return sad message and
@@ -30,22 +35,23 @@ namespace MoodAnalyser
         /// <returns></returns>
         public string MoodCheck()
         {
+            
             try
             {
                 if (message == null || message == string.Empty)
-                    throw new MoodAnalysisException(message);
-                if (message == SAD_MESSAGE)
+                    throw new MoodAnalysisException(MoodAnalysisException.Errors.EMPTY);
+                if (message.Contains("sad"))
                     return "SAD";
-                if (message == HAPPY_MESSAGE)
+                if (message.Contains("happy"))
                     return "HAPPY";
             }
-            catch(MoodAnalysisException ex)
+            catch (MoodAnalysisException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
             }
             finally
             {
